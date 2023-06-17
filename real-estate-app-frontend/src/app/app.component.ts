@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <app-nav-bar></app-nav-bar>
     <div class="container" style="margin-top: 70px;">
-    <app-property-card></app-property-card>
+    <!-- <app-property-card></app-property-card> -->
     <app-property-list></app-property-list>
     </div>
   `
