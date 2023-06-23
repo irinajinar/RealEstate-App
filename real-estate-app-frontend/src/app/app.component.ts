@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-nav-bar></app-nav-bar>
-    <div class="container" style="margin-top: 70px;">
-    <!-- <app-property-card></app-property-card> -->
-    <app-property-list></app-property-list>
-    </div>
-  `
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css']
 })
-export class AppComponent {
-  // Component logic here
+
+export class AppComponent implements OnInit {
+  title = 'App';
+  constructor() { }
+
+  ngOnInit() { }
 }

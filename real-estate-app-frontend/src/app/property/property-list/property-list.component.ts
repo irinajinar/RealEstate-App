@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HousingService } from 'src/app/services/housing.service';
 import { IProperty } from '../IProperty.interface';
 import { ActivatedRoute } from '@angular/router';
-import { PropertyCardComponent } from '../property-card/property-card.component';
 
 @Component({
   selector: 'app-property-list',
@@ -11,26 +10,19 @@ import { PropertyCardComponent } from '../property-card/property-card.component'
 })
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
-  properties: IProperty[] = [];
+  properties: IProperty[] | undefined;
 
-  constructor(private route: ActivatedRoute, private housingService: HousingService) {}
+  constructor(private route: ActivatedRoute, private housingService: HousingService) { }
 
   ngOnInit(): void {
-    if (this.route.snapshot.url.toString().includes('rent-property')) {
-      this.SellRent = 2;
+    if (this.route.snapshot.url.toString()) {
+      this.SellRent = 2; // Means we are on rent-property URL else we are on base URL
     }
-    // if (this.route.snapshot.url.toString()){
-    //   this.SellRent = 2; //Means we are on rent-property URL esle we are on base URL
-    // }
     this.housingService.getAllProperties(this.SellRent).subscribe(
-      (data: IProperty[]) => {
-        this.properties = data;
-        console.log(data);
-       },
-      (error: any) => {
-        console.log('httperror:');
-        console.log(error);
+      result =>  {
+        this.properties = result;
       }
-    );
+    , error => console.log(error));
   }
+
 }
